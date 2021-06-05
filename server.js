@@ -14,7 +14,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 // static files middleware
 app.use(express.static('public'))
-
+//sessions middleware 
+app.use(session({
+  secret: 'Imsosecret',
+  resave: false,
+  saveUninitialized: false
+}))
 
 // CONTROLLERS
 // fitting room three
