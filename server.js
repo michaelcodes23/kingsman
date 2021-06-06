@@ -20,12 +20,21 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }))
-
+//allow comparison of logged in or out middleware
+app.use(function (req,res,next){
+  res.locals.session = req.session;
+  next();
+})
 // CONTROLLERS
 // fitting room three
 const roomController = require('./controllers/room.js');
 app.use('/room', roomController);
-
+//users controller
+const usersController = require('./controllers/users.js');
+app.use('/users', usersController)
+//session controller
+const sessionController = require('./controllers/sessions.js')
+app.use('/sessions', sessionController)
 
 // GET INDEX
 app.get('/', (req, res) => {
