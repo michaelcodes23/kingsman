@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/users.js');
 const bcrypt = require('bcrypt');
+const { localsName } = require('ejs');
 const salt_rounds = 10;
 //create new user
 router.get('/new', (req, res) => {
