@@ -5,10 +5,9 @@ const session = require('express-session');
 
 //Sessions - new route
 router.get('/new', (req,res)=>{
-    res.render('new.ejs')
+    res.render('./sessions/new.ejs')
 })
-//New
-//Adding test
+// Sessions - Post
 router.post('/', (req, res)=>{
     console.log(req.body);
     User.findOne({"username": req.body.username}, (error, foundUser)=>{
@@ -19,6 +18,17 @@ router.post('/', (req, res)=>{
         } else if (req.body.password === foundUser[0].password){
             console.log(req.session)
             res.redirect('/room')
+        } else {
+            res.send('Incorrect Login Info, Try Again!')
         }
-    })
+    });
+
 })
+
+//Destroy Session
+router.get('/logout', (req,res)=>{
+    req.session.destroy();
+    res.redirect('/')
+})
+
+module.exports = router;
