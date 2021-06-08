@@ -11,7 +11,8 @@ router.get('/', (req, res) => {
     // renders the room page
     res.render('room/index.ejs', {
       // passes the found users to the room page
-      users: foundUsers
+      users: foundUsers,
+      isLoggedIn: req.session.isLoggedIn
     });
   });
 });

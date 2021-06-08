@@ -13,8 +13,8 @@ router.get('/new', (req,res)=>{
 router.post('/', (req, res)=>{
     console.log(req.body);
     User.findOne({"username": req.body.username}, (error, foundUser)=>{
-        console.log(foundUser)
-        console.log(foundUser.messages)
+
+
         req.session.currentUser = foundUser
         if(foundUser.password === null){
             res.redirect('/new')
@@ -22,9 +22,10 @@ router.post('/', (req, res)=>{
             console.log(req.body.password, foundUser.password)
             const doesPasswordMatch = bcrypt.compareSync(req.body.password, foundUser.password)
             if (doesPasswordMatch){
-                console.log(req.session, 'You logged in successfully')
-                req.session.userId = foundUser._id;
-                console.log(req.session)
+                console.log('You logged in successfully')
+                req.session.isLoggedIn = true
+                console.log(foundUser)
+                console.log(foundUser.messages)
                 res.redirect('/room')
             } else {
                 res.send('Incorrect Login Info, Try Again!')
