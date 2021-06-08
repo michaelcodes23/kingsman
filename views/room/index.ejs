@@ -8,6 +8,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
   </head>
+
   <body>
     <!-- ====== TOP HEADER BAR ====== -->
     <div class="header">
@@ -21,13 +22,9 @@
       <!-- navigation -->
       <div class="header-nav">
         <ul>
-          <!-- fitting room link -->
-          <li><a href="/room">fitting room three</a></li>
           <!-- add your form button to log out here -->
-          <% if (!locals.session.loggedin) { %>
-            <li>
-              <a href=/sessions/new>Log in</a>
-            </li>
+          <% if (isLoggedIn) { %>
+          
             <li>
               <a href=sessions/logout>Log out</a>
             </li>
@@ -36,10 +33,7 @@
             </li>
              <% } else { %>
               <li>
-                <a href=sessions/logout>Log out</a>
-              </li>
-              <li>
-                <a href="/users/new">Create a New User</a>
+                <a href=/sessions/new>Log in</a>
               </li>
                 <!-- add your link to create a user here -->
           <% } %>
