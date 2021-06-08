@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const methodOverride = require('method-override');
 const bcrypt = require('bcrypt');
-const port = 3000;
+const port = 3000 || 4000;
 
 
 // MIDDLEWARE
